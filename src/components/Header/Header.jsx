@@ -1,6 +1,8 @@
+import { Loader } from "../Loader/Loader";
+
 export const Header = ({ currencyData }) => {
   if (!currencyData || !currencyData.quotes) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const usdToUah = currencyData.quotes.USDUAH;

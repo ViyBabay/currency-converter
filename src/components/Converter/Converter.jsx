@@ -54,7 +54,7 @@ export const Converter = ({ currencyData }) => {
   };
 
   return (
-    <div className="bg-converter-gradient w-full max-h-full">
+    <div className="bg-converter-gradient w-full min-h-screen pt-20">
       <CurrencyInput
         amount={amount1}
         onAmountChange={handleAmount1Change}
