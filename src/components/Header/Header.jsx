@@ -1,27 +1,20 @@
 export const Header = ({ currencyData }) => {
-  if (!currencyData) {
+  if (!currencyData || !currencyData.quotes) {
     return <div>Loading...</div>;
   }
 
-  const usdRate = currencyData.find(
-    (currency) =>
-      currency.currencyCodeA === 840 && currency.currencyCodeB === 980
-  );
-  const eurRate = currencyData.find(
-    (currency) =>
-      currency.currencyCodeA === 978 && currency.currencyCodeB === 980
-  );
+  const usdToUah = currencyData.quotes.USDUAH;
+  const usdToEur = currencyData.quotes.USDEUR;
+  const eurToUah =
+    usdToUah && usdToEur ? (usdToUah / usdToEur).toFixed(2) : "N/A";
+  const usdRate = usdToUah ? usdToUah.toFixed(2) : "N/A";
 
   return (
     <>
       <header>
         <div className="bg-header-gradient h-20 flex justify-around items-center text-white">
-          <p>
-            USD: {usdRate.rateBuy.toFixed(2)} / {usdRate.rateSell.toFixed(2)}
-          </p>
-          <p>
-            EUR: {eurRate.rateBuy.toFixed(2)} / {eurRate.rateSell.toFixed(2)}
-          </p>
+          <p>USD: {usdRate} UAH</p>
+          <p>EUR: {eurToUah} UAH</p>
         </div>
       </header>
     </>

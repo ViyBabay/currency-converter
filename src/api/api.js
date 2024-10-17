@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const API_URL =
+  "http://apilayer.net/api/live?access_key=0e3d306c6677179864a3746314d233e7&currencies=EUR,UAH,GBP,CAD,PLN&source=USD&format=1";
+
 export const fetchCurrencyRates = async () => {
   const lastRequestTime = localStorage.getItem("lastRequestTime");
   const currentTime = Date.now();
@@ -12,7 +15,7 @@ export const fetchCurrencyRates = async () => {
   }
 
   try {
-    const response = await axios.get("https://api.monobank.ua/bank/currency");
+    const response = await axios.get(API_URL);
     const data = response.data;
 
     localStorage.setItem("currencyData", JSON.stringify(data));

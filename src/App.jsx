@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Header } from "./components/Header/Header";
+
 import { fetchCurrencyRates } from "./api/api";
 import { Converter } from "./components/Converter/Converter";
+import { Header } from "./components/Header/Header";
 
 function App() {
   const [currencyData, setCurrencyData] = useState(null);
@@ -20,7 +21,7 @@ function App() {
   return (
     <>
       <Header currencyData={currencyData} />
-      <Converter />
+      <Converter currencyData={currencyData} />
     </>
   );
 }
