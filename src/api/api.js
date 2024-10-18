@@ -17,16 +17,22 @@ export const fetchCurrencyRates = async () => {
 
   try {
     const response = await axios.get(API_URL);
-    const data = response.data;
 
-    console.log("API:", data);
+    if (response.status === 200) {
+      const data = response.data;
 
-    if (data && data.quotes) {
-      const jsonData = JSON.stringify(data);
-      localStorage.setItem("currencyData", jsonData);
-      localStorage.setItem("lastRequestTime", currentTime.toString());
-      return data;
+      console.log("API:", data);
+
+      if (data && data.quotes) {
+        const jsonData = JSON.stringify(data);
+        localStorage.setItem("currencyData", jsonData);
+        localStorage.setItem("lastRequestTime", currentTime.toString());
+        return data;
+      } else {
+        return null;
+      }
     } else {
+      console.error("API:", response.status);
       return null;
     }
   } catch (error) {
