@@ -10,6 +10,7 @@ export const fetchCurrencyRates = async () => {
   if (lastRequestTime && currentTime - lastRequestTime < 3600000) {
     const dataFromStorage = localStorage.getItem("currencyData");
     if (dataFromStorage) {
+      console.log("LocalStorage:", JSON.parse(dataFromStorage));
       return JSON.parse(dataFromStorage);
     }
   }
@@ -18,11 +19,18 @@ export const fetchCurrencyRates = async () => {
     const response = await axios.get(API_URL);
     const data = response.data;
 
-    localStorage.setItem("currencyData", JSON.stringify(data));
-    localStorage.setItem("lastRequestTime", currentTime);
+    console.log("API:", data);
 
-    return data;
+    if (data && data.quotes) {
+      const jsonData = JSON.stringify(data);
+      localStorage.setItem("currencyData", jsonData);
+      localStorage.setItem("lastRequestTime", currentTime.toString());
+      return data;
+    } else {
+      return null;
+    }
   } catch (error) {
+    console.error("API error:", error);
     return null;
   }
 };

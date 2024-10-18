@@ -14,7 +14,7 @@ export const Header = ({ currencyData }) => {
   return (
     <>
       <header>
-        <div className="bg-header-gradient h-20 flex justify-around items-center text-white">
+        <div className="bg-header-gradient h-20 flex justify-around items-center text-white text-xl">
           <p>USD: {usdRate} UAH</p>
           <p>EUR: {eurToUah} UAH</p>
         </div>
