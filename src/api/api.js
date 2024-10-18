@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL =
-  "http://apilayer.net/api/live?access_key=0e3d306c6677179864a3746314d233e7&currencies=EUR,UAH,GBP,CAD,PLN&source=USD&format=1";
+  "https://apilayer.net/api/live?access_key=0e3d306c6677179864a3746314d233e7&currencies=EUR,UAH,GBP,CAD,PLN&source=USD&format=1";
 
 export const fetchCurrencyRates = async () => {
   const lastRequestTime = localStorage.getItem("lastRequestTime");
